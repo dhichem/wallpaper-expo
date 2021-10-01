@@ -1,4 +1,4 @@
 class CatgeoriesModel {
-  String? categoriesName;
+  String? categorieName;
   String? imageURL;
 }
