@@ -52,16 +52,21 @@ class _HomeState extends State<Home> {
             ),
 
             const SizedBox(height: 16,),
-            ListView.builder(
-              itemCount: categories.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index){
-                return CategoriesTile(
-                  imageURL: categories[index].imageURL,
-                  title: categories[index].categorieName,
-                );
-              }
-              )
+            Container(
+              height: 80,
+              child: ListView.builder(
+                padding: EdgeInsets.symmetric(horizontal: 24),
+                itemCount: categories.length,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index){
+                  return CategoriesTile(
+                    imageURL: categories[index].imageURL,
+                    title: categories[index].categorieName,
+                  );
+                }
+                ),
+            )
           ],
         ),
       ),
@@ -79,7 +84,8 @@ class CategoriesTile extends StatelessWidget {
     return Container(
       child: Stack(
         children: <Widget>[
-          Container(
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
             child: Image.network(imageURL!),
           ),
           Container(
@@ -90,3 +96,4 @@ class CategoriesTile extends StatelessWidget {
     );
   }
 }
+
