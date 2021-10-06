@@ -82,14 +82,18 @@ class CategoriesTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(right: 5),
       child: Stack(
         children: <Widget>[
           ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: Image.network(imageURL!),
+            borderRadius: BorderRadius.circular(9),
+            child: Image.network(imageURL!, height: 65, width: 110, fit: BoxFit.cover,),
           ),
           Container(
-            child: Text(title!),
+            height: 65, width: 110,
+            color: Colors.black38,
+            alignment: Alignment.center,
+            child: Text(title!, style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 15),),
           )
         ],
       ),

@@ -29,7 +29,7 @@ List<CatgeoriesModel> getCategories() {
   //
   catgeorieModel.imageURL =
       'https://images.pexels.com/photos/5417678/pexels-photo-5417678.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
-  catgeorieModel.categorieName = 'car';
+  catgeorieModel.categorieName = 'calendar';
   categories.add(catgeorieModel);
   catgeorieModel = new CatgeoriesModel();
 
@@ -37,7 +37,7 @@ List<CatgeoriesModel> getCategories() {
   //
   catgeorieModel.imageURL =
       'https://images.pexels.com/photos/7123604/pexels-photo-7123604.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
-  catgeorieModel.categorieName = 'car';
+  catgeorieModel.categorieName = 'time';
   categories.add(catgeorieModel);
   catgeorieModel = new CatgeoriesModel();
 
@@ -46,7 +46,7 @@ List<CatgeoriesModel> getCategories() {
   //
   catgeorieModel.imageURL =
       'https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
-  catgeorieModel.categorieName = 'car';
+  catgeorieModel.categorieName = 'technology';
   categories.add(catgeorieModel);
   catgeorieModel = new CatgeoriesModel();
 
