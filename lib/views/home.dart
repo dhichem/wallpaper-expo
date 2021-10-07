@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:wallpaperapp/api_key.dart';
 import 'package:wallpaperapp/data/data.dart';
 import 'package:wallpaperapp/model/categories_model.dart';
 import 'package:wallpaperapp/widgets/widget.dart';
+import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,8 +18,25 @@ class _HomeState extends State<Home> {
   List<CatgeoriesModel> categories =
       List<CatgeoriesModel>.empty(growable: true);
 
+  getTrendingPhotos() async {
+    var response = await http.get(
+        Uri.parse("https://api.pexels.com/v1/curated?page=1&per_page=15"),
+        headers: {
+          "Authorization":
+              "563492ad6f91700001000001cf8c7ac1a0e740fdbf34eb945fff7469"
+        });
+
+    print(response.body.toString());
+
+    Map<String, dynamic> jsonData = jsonDecode(response.body);
+    jsonData["photos"].forEach((element) {
+      
+    });
+  }
+
   @override
   void initState() {
+    getTrendingPhotos();
     categories = getCategories();
     super.initState();
   }
@@ -50,22 +71,22 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-
-            const SizedBox(height: 16,),
+            const SizedBox(
+              height: 16,
+            ),
             Container(
               height: 80,
               child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                itemCount: categories.length,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index){
-                  return CategoriesTile(
-                    imageURL: categories[index].imageURL,
-                    title: categories[index].categorieName,
-                  );
-                }
-                ),
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  itemCount: categories.length,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return CategoriesTile(
+                      imageURL: categories[index].imageURL,
+                      title: categories[index].categorieName,
+                    );
+                  }),
             )
           ],
         ),
@@ -77,7 +98,7 @@ class _HomeState extends State<Home> {
 class CategoriesTile extends StatelessWidget {
   final String? imageURL, title;
 
-  CategoriesTile({@required this.imageURL,@required this.title});
+  CategoriesTile({@required this.imageURL, @required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -87,17 +108,28 @@ class CategoriesTile extends StatelessWidget {
         children: <Widget>[
           ClipRRect(
             borderRadius: BorderRadius.circular(9),
-            child: Image.network(imageURL!, height: 65, width: 110, fit: BoxFit.cover,),
+            child: Image.network(
+              imageURL!,
+              height: 65,
+              width: 110,
+              fit: BoxFit.cover,
+            ),
           ),
           Container(
-            height: 65, width: 110,
+            height: 65,
+            width: 110,
             color: Colors.black38,
             alignment: Alignment.center,
-            child: Text(title!, style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 15),),
+            child: Text(
+              title!,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15),
+            ),
           )
         ],
       ),
     );
   }
 }
-
