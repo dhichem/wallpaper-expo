@@ -22,7 +22,7 @@ class _SearchState extends State<Search> {
   getSearchPhotos(String query) async {
     var response = await http.get(
         Uri.parse(
-            "https://api.pexels.com/v1/search?query=$query&page=1&per_page=30"),
+            "https://api.pexels.com/v1/search?query=$query&page=1&per_page=40"),
         headers: {"Authorization": apiKey});
 
     print(response.body.toString());

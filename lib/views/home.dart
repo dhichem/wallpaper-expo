@@ -5,6 +5,7 @@ import 'package:wallpaperapp/api_key.dart';
 import 'package:wallpaperapp/data/data.dart';
 import 'package:wallpaperapp/model/categories_model.dart';
 import 'package:wallpaperapp/model/wallpaper_model.dart';
+import 'package:wallpaperapp/views/categorie.dart';
 import 'package:wallpaperapp/views/search.dart';
 import 'package:wallpaperapp/widgets/widget.dart';
 import 'package:http/http.dart' as http;
@@ -26,7 +27,7 @@ class _HomeState extends State<Home> {
 
   getTrendingPhotos() async {
     var response = await http.get(
-        Uri.parse("https://api.pexels.com/v1/curated?page=1&per_page=30"),
+        Uri.parse("https://api.pexels.com/v1/curated?page=1&per_page=40"),
         headers: {
           "Authorization": apiKey
         });
@@ -124,36 +125,46 @@ class CategoriesTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 5),
-      child: Stack(
-        children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(9),
-            child: Image.network(
-              imageURL!,
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) => Categorie(
+            categorieName: title!.toLowerCase(),
+          )
+          ));
+      },
+
+      child: Container(
+        margin: const EdgeInsets.only(right: 5),
+        child: Stack(
+          children: <Widget>[
+            ClipRRect(
+              borderRadius: BorderRadius.circular(9),
+              child: Image.network(
+                imageURL!,
+                height: 65,
+                width: 110,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Container(
               height: 65,
               width: 110,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Container(
-            height: 65,
-            width: 110,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Colors.black38,
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              title!,
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15),
-            ),
-          )
-        ],
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.black38,
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                title!,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
