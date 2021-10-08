@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:wallpaperapp/api_key.dart';
 import 'package:wallpaperapp/data/data.dart';
 import 'package:wallpaperapp/model/categories_model.dart';
+import 'package:wallpaperapp/model/wallpaper_model.dart';
 import 'package:wallpaperapp/widgets/widget.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,6 +19,8 @@ class _HomeState extends State<Home> {
   List<CatgeoriesModel> categories =
       List<CatgeoriesModel>.empty(growable: true);
 
+  List<WallpaperModel> wallpapers = List<WallpaperModel>.empty(growable: true);
+
   getTrendingPhotos() async {
     var response = await http.get(
         Uri.parse("https://api.pexels.com/v1/curated?page=1&per_page=15"),
@@ -30,7 +33,10 @@ class _HomeState extends State<Home> {
 
     Map<String, dynamic> jsonData = jsonDecode(response.body);
     jsonData["photos"].forEach((element) {
-      
+      WallpaperModel wallpaperModel = WallpaperModel();
+
+      wallpaperModel = WallpaperModel.fromMap(element);
+      wallpapers.add(wallpaperModel);
     });
   }
 
