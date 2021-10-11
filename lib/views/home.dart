@@ -38,6 +38,10 @@ class _HomeState extends State<Home> {
       wallpaperModel = WallpaperModel.fromMap(element);
       wallpapers.add(wallpaperModel);
     });
+
+    setState(() {
+
+    });
   }
 
   @override
@@ -93,7 +97,13 @@ class _HomeState extends State<Home> {
                       title: categories[index].categorieName,
                     );
                   }),
-            )
+            ),
+
+            const SizedBox(
+              height: 16,
+            ),
+            WallpapersList(wallpapers: wallpapers, context: context)
+
           ],
         ),
       ),
