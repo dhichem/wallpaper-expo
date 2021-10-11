@@ -6,6 +6,7 @@ import 'package:wallpaperapp/data/data.dart';
 import 'package:wallpaperapp/model/categories_model.dart';
 import 'package:wallpaperapp/model/wallpaper_model.dart';
 import 'package:wallpaperapp/views/categorie.dart';
+import 'package:wallpaperapp/views/image_view.dart';
 import 'package:wallpaperapp/views/search.dart';
 import 'package:wallpaperapp/widgets/widget.dart';
 import 'package:http/http.dart' as http;
@@ -28,9 +29,7 @@ class _HomeState extends State<Home> {
   getTrendingPhotos() async {
     var response = await http.get(
         Uri.parse("https://api.pexels.com/v1/curated?page=1&per_page=40"),
-        headers: {
-          "Authorization": apiKey
-        });
+        headers: {"Authorization": apiKey});
 
     print(response.body.toString());
 
@@ -82,10 +81,12 @@ class _HomeState extends State<Home> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Search(
-                              searchQuery: searchController.text,
-                            )));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Search(
+                                      searchQuery: searchController.text,
+                                    )));
                       },
                       child: Container(child: Icon(Icons.search)),
                     ),
@@ -126,14 +127,14 @@ class CategoriesTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => Categorie(
-            categorieName: title!.toLowerCase(),
-          )
-          ));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Categorie(
+                      categorieName: title!.toLowerCase(),
+                    )));
       },
-
       child: Container(
         margin: const EdgeInsets.only(right: 5),
         child: Stack(
