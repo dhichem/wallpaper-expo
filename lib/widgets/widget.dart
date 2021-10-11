@@ -21,6 +21,7 @@ Widget WallpapersList({required List<WallpaperModel> wallpapers, context}) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 16),
     child: GridView.count(
+      shrinkWrap: true,
       crossAxisCount: 2,
       childAspectRatio: 0.6,
       mainAxisSpacing: 6.0,
