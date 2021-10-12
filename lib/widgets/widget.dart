@@ -22,6 +22,7 @@ Widget WallpapersList({required List<WallpaperModel> wallpapers, context}) {
     padding: const EdgeInsets.symmetric(horizontal: 16),
     child: GridView.count(
       shrinkWrap: true,
+      physics: const ClampingScrollPhysics(),
       crossAxisCount: 2,
       childAspectRatio: 0.6,
       mainAxisSpacing: 6.0,
@@ -29,7 +30,10 @@ Widget WallpapersList({required List<WallpaperModel> wallpapers, context}) {
       children: wallpapers.map((wallp) {
         return GridTile(
           child: Container(
-            child: Image.network(wallp.src!.portrait!),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.network(wallp.src!.portrait!, fit: BoxFit.cover)
+              ),
           ),
         );
       }).toList(),
