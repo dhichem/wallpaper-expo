@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:wallpaperapp/api_key.dart';
@@ -6,7 +7,6 @@ import 'package:wallpaperapp/data/data.dart';
 import 'package:wallpaperapp/model/categories_model.dart';
 import 'package:wallpaperapp/model/wallpaper_model.dart';
 import 'package:wallpaperapp/views/categorie.dart';
-import 'package:wallpaperapp/views/image_view.dart';
 import 'package:wallpaperapp/views/search.dart';
 import 'package:wallpaperapp/widgets/widget.dart';
 import 'package:http/http.dart' as http;
@@ -26,6 +26,7 @@ class _HomeState extends State<Home> {
 
   TextEditingController searchController = TextEditingController();
 
+  //function for getting the trending wallpapers in the home page
   getTrendingPhotos() async {
     var response = await http.get(
         Uri.parse("https://api.pexels.com/v1/curated?page=1&per_page=40"),
