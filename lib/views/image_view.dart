@@ -86,9 +86,14 @@ class _ImageViewState extends State<ImageView> {
                   const SizedBox(
                     height: 15,
                   ),
-                  const Text(
-                    "Cancel",
-                    style: TextStyle(color: Colors.white),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      "Cancel",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                   const SizedBox(
                     height: 50,
@@ -114,7 +119,10 @@ class _ImageViewState extends State<ImageView> {
 
   // function that saves the wallpaper in Gallery
   saveWallpaper() async {
-    await _getPermission();
+    if (Platform.isAndroid) {
+      await _getPermission();
+    }
+
     var response = await Dio().get(widget.imgUrl!,
         options: Options(responseType: ResponseType.bytes));
 

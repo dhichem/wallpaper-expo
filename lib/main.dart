@@ -5,11 +5,10 @@ void main() {
   runApp(const MyApp());
 }
 
-
 const MaterialColor white = MaterialColor(
   0xFFFFFFFF,
-   <int, Color>{
-    50:  Color(0xFFFFFFFF),
+  <int, Color>{
+    50: Color(0xFFFFFFFF),
     100: Color(0xFFFFFFFF),
     200: Color(0xFFFFFFFF),
     300: Color(0xFFFFFFFF),
@@ -21,7 +20,6 @@ const MaterialColor white = MaterialColor(
     900: Color(0xFFFFFFFF),
   },
 );
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -39,5 +37,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

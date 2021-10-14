@@ -59,6 +59,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: AppName(),
         elevation: 0.0,
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -111,6 +112,19 @@ class _HomeState extends State<Home> {
                       );
                     }),
               ),
+
+              //text trending
+
+              Container(
+                alignment: Alignment.topLeft,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                child: const Text(
+                  "Trending",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                ),
+              ),
+
               WallpapersList(wallpapers: wallpapers, context: context)
             ],
           ),

@@ -6,10 +6,10 @@ import 'package:wallpaperapp/views/image_view.dart';
 Widget AppName() {
   return RichText(
     text: const TextSpan(
-      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+      style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
       children: <TextSpan>[
         TextSpan(text: 'Wallpaper', style: TextStyle(color: Colors.black87)),
-        TextSpan(text: 'Expo', style: TextStyle(color: Colors.red)),
+        TextSpan(text: ' Expo', style: TextStyle(color: Colors.red)),
       ],
     ),
   );
@@ -29,16 +29,20 @@ Widget WallpapersList({required List<WallpaperModel> wallpapers, context}) {
         return GridTile(
           child: GestureDetector(
             onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ImageView(
-                  imgUrl: wallp.src!.portrait!,
-                )));
-              },
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ImageView(
+                            imgUrl: wallp.src!.portrait!,
+                          )));
+            },
             child: Hero(
               tag: wallp.src!.portrait!,
               child: Container(
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
-                    child: Image.network(wallp.src!.portrait!, fit: BoxFit.cover)),
+                    child:
+                        Image.network(wallp.src!.portrait!, fit: BoxFit.cover)),
               ),
             ),
           ),
