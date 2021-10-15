@@ -58,6 +58,16 @@ class _CategorieState extends State<Categorie> {
               const SizedBox(
                 height: 16,
               ),
+              Container(
+                alignment: Alignment.topLeft,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                child: Text(
+                  widget.categorieName!,
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w600),
+                ),
+              ),
               WallpapersList(wallpapers: wallpapers, context: context)
             ],
           ),
